@@ -14,10 +14,12 @@ export default function KomunitasLayout({
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-8">
       <div className="mb-8 flex items-center gap-3">
-        <Users className="h-8 w-8 text-primary" />
+        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500/20 to-purple-500/20">
+          <Users className="h-6 w-6 text-pink-400" />
+        </div>
         <div>
-          <h1 className="text-2xl font-bold">Komunitas</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl font-bold text-white">Komunitas</h1>
+          <p className="text-slate-400">
             Terhubung dengan komunitas tunarungu & tunawicara
           </p>
         </div>

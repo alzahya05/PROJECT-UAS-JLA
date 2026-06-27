@@ -29,10 +29,10 @@ export default function CameraFeed({ onCapture, className }: CameraFeedProps) {
 
   if (!isSupported) {
     return (
-      <div className={cn("rounded-xl border border-dashed p-8 text-center", className)}>
-        <CameraOff className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
-        <p className="text-lg font-medium">Kamera tidak tersedia</p>
-        <p className="text-sm text-muted-foreground">
+      <div className={cn("rounded-xl border border-dashed border-white/[0.08] p-8 text-center", className)}>
+        <CameraOff className="mx-auto mb-4 h-12 w-12 text-slate-500" />
+        <p className="text-lg font-medium text-white">Kamera tidak tersedia</p>
+        <p className="text-sm text-slate-400">
           Browser ini tidak mendukung akses kamera
         </p>
       </div>
@@ -42,7 +42,7 @@ export default function CameraFeed({ onCapture, className }: CameraFeedProps) {
   return (
     <div className={cn("space-y-4", className)}>
       {/* Video Feed */}
-      <div className="relative overflow-hidden rounded-xl border bg-black">
+      <div className="glass relative overflow-hidden rounded-xl">
         <video
           ref={videoRef}
           className="aspect-video w-full object-contain"
@@ -50,9 +50,9 @@ export default function CameraFeed({ onCapture, className }: CameraFeedProps) {
           muted
         />
         {!isActive && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-muted/80">
-            <Camera className="mb-4 h-12 w-12 text-muted-foreground" />
-            <p className="text-muted-foreground">Kamera belum aktif</p>
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60">
+            <Camera className="mb-4 h-12 w-12 text-slate-500" />
+            <p className="text-slate-400">Kamera belum aktif</p>
           </div>
         )}
       </div>
@@ -62,10 +62,10 @@ export default function CameraFeed({ onCapture, className }: CameraFeedProps) {
         <button
           onClick={isActive ? stopCamera : startCamera}
           className={cn(
-            "flex h-16 w-16 items-center justify-center rounded-full transition-all",
+            "flex h-16 w-16 items-center justify-center rounded-full transition-all duration-300",
             isActive
-              ? "bg-red-500 text-white"
-              : "bg-primary text-primary-foreground hover:bg-primary/90"
+              ? "bg-red-500 text-white shadow-[0_0_20px_rgba(239,68,68,0.3)]"
+              : "btn-primary-glow glow-blue-hover"
           )}
           aria-label={isActive ? "Matikan kamera" : "Nyalakan kamera"}
         >
@@ -75,10 +75,10 @@ export default function CameraFeed({ onCapture, className }: CameraFeedProps) {
         {isActive && (
           <button
             onClick={handleCapture}
-            className="flex h-16 w-16 items-center justify-center rounded-full bg-secondary text-secondary-foreground transition-all hover:bg-secondary/80"
+            className="glass flex h-16 w-16 items-center justify-center rounded-full transition-all duration-200 hover:bg-white/[0.08]"
             aria-label="Ambil gambar"
           >
-            <Scan className="h-7 w-7" />
+            <Scan className="h-7 w-7 text-slate-300" />
           </button>
         )}
       </div>

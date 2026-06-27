@@ -18,10 +18,10 @@ export default function AudioVisualizer({ className, threshold = 100 }: AudioVis
 
   if (!isSupported) {
     return (
-      <div className={cn("rounded-xl border border-dashed p-8 text-center", className)}>
-        <AlertTriangle className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
-        <p className="text-lg font-medium">Browser tidak mendukung</p>
-        <p className="text-sm text-muted-foreground">
+      <div className={cn("rounded-xl border border-dashed border-white/[0.08] p-8 text-center", className)}>
+        <AlertTriangle className="mx-auto mb-4 h-12 w-12 text-slate-500" />
+        <p className="text-lg font-medium text-white">Browser tidak mendukung</p>
+        <p className="text-sm text-slate-400">
           Web Audio API tidak tersedia di browser ini
         </p>
       </div>
@@ -31,7 +31,7 @@ export default function AudioVisualizer({ className, threshold = 100 }: AudioVis
   return (
     <div className={cn("space-y-6", className)}>
       {/* Visualizer */}
-      <div className="flex h-48 items-end justify-center gap-1 rounded-xl border bg-muted/30 p-6">
+      <div className="glass flex h-48 items-end justify-center gap-1 rounded-xl p-6">
         {Array.from({ length: barCount }).map((_, i) => {
           const value = frequencyData[i * Math.floor(frequencyData.length / barCount)] || 0;
           const height = (value / 255) * 100;
@@ -40,7 +40,9 @@ export default function AudioVisualizer({ className, threshold = 100 }: AudioVis
               key={i}
               className={cn(
                 "w-3 rounded-t-md transition-all duration-75",
-                isLoud ? "bg-red-500" : "bg-primary"
+                isLoud
+                  ? "bg-gradient-to-t from-red-500 to-pink-400"
+                  : "bg-gradient-to-t from-blue-600 to-pink-500"
               )}
               style={{ height: `${Math.max(height, 4)}%` }}
             />
@@ -51,14 +53,16 @@ export default function AudioVisualizer({ className, threshold = 100 }: AudioVis
       {/* Volume Level */}
       <div className="space-y-2">
         <div className="flex items-center justify-between text-sm">
-          <span className="text-muted-foreground">Volume</span>
-          <span className="font-medium">{Math.round(volume)} dB</span>
+          <span className="text-slate-400">Volume</span>
+          <span className="font-medium text-white">{Math.round(volume)} dB</span>
         </div>
-        <div className="h-3 w-full overflow-hidden rounded-full bg-muted">
+        <div className="h-3 w-full overflow-hidden rounded-full bg-white/[0.06]">
           <div
             className={cn(
-              "h-full transition-all duration-75",
-              isLoud ? "bg-red-500" : "bg-primary"
+              "h-full rounded-full transition-all duration-75",
+              isLoud
+                ? "bg-gradient-to-r from-red-500 to-pink-500"
+                : "bg-gradient-to-r from-blue-500 to-pink-500"
             )}
             style={{ width: `${Math.min(volume, 100)}%` }}
           />
@@ -67,9 +71,9 @@ export default function AudioVisualizer({ className, threshold = 100 }: AudioVis
 
       {/* Alert */}
       {isLoud && isListening && (
-        <div className="flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-950/30">
-          <AlertTriangle className="h-5 w-5 text-red-500" />
-          <span className="font-medium text-red-700 dark:text-red-400">
+        <div className="flex items-center gap-3 rounded-xl border border-red-500/20 bg-red-500/10 p-4">
+          <AlertTriangle className="h-5 w-5 text-red-400" />
+          <span className="font-medium text-red-400">
             Suara keras terdeteksi!
           </span>
         </div>
@@ -80,10 +84,10 @@ export default function AudioVisualizer({ className, threshold = 100 }: AudioVis
         <button
           onClick={isListening ? stopListening : startListening}
           className={cn(
-            "flex h-16 w-16 items-center justify-center rounded-full transition-all",
+            "flex h-16 w-16 items-center justify-center rounded-full transition-all duration-300",
             isListening
-              ? "bg-red-500 text-white animate-pulse"
-              : "bg-primary text-primary-foreground hover:bg-primary/90"
+              ? "bg-red-500 text-white animate-pulse shadow-[0_0_20px_rgba(239,68,68,0.3)]"
+              : "btn-primary-glow glow-blue-hover"
           )}
           aria-label={isListening ? "Hentikan deteksi" : "Mulai deteksi"}
         >

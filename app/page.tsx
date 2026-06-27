@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   BookOpen,
@@ -10,6 +12,8 @@ import {
   GraduationCap,
   MessageSquare,
 } from "lucide-react";
+import { useAppContext } from "@/lib/context";
+import OnboardingFlow from "@/components/onboarding/OnboardingFlow";
 
 const modules = [
   {
@@ -17,7 +21,7 @@ const modules = [
     description: "Pelajari bahasa isyarat melalui modul interaktif",
     href: "/edukasi/kelas",
     icon: <BookOpen className="h-8 w-8" />,
-    color: "bg-blue-500/10 text-blue-600",
+    color: "from-blue-500/20 to-indigo-500/20 text-blue-400",
     features: ["Kelas Huruf & Angka", "Kamus Isyarat", "Latihan Kuis"],
   },
   {
@@ -25,7 +29,7 @@ const modules = [
     description: "Alat bantu komunikasi dan deteksi suara",
     href: "/aksesibilitas/speech-to-text",
     icon: <Accessibility className="h-8 w-8" />,
-    color: "bg-green-500/10 text-green-600",
+    color: "from-emerald-500/20 to-cyan-500/20 text-emerald-400",
     features: ["Speech to Text", "Sound Detector", "Scanner Isyarat"],
   },
   {
@@ -33,7 +37,7 @@ const modules = [
     description: "Terhubung dengan komunitas tunarungu & tunawicara",
     href: "/komunitas/artikel",
     icon: <Users className="h-8 w-8" />,
-    color: "bg-purple-500/10 text-purple-600",
+    color: "from-pink-500/20 to-purple-500/20 text-pink-400",
     features: ["Artikel Edukasi", "Forum Diskusi", "Tips Komunikasi"],
   },
 ];
@@ -65,41 +69,52 @@ const quickAccess = [
   },
 ];
 
-export default function Home() {
+function HomeContent() {
   return (
-    <div className="mx-auto w-full max-w-7xl px-4 py-12">
-      {/* Hero */}
-      <section className="mb-16 text-center">
-        <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
-          <span className="text-primary">Sign</span>Access
-        </h1>
-        <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-          Aplikasi aksesibilitas komprehensif untuk Penyandang Tunarungu &amp; Tunawicara.
-          Belajar bahasa isyarat, gunakan alat bantu komunikasi, dan terhubung dengan komunitas.
-        </p>
+    <div className="relative mx-auto w-full max-w-7xl px-4 py-12">
+      <section className="relative mb-20 text-center">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute left-1/2 top-0 h-[500px] w-[600px] -translate-x-1/2 -translate-y-1/4 rounded-full bg-blue-600/10 blur-[120px]" />
+          <div className="absolute left-1/2 top-10 h-[400px] w-[500px] -translate-x-1/3 rounded-full bg-pink-500/8 blur-[100px]" />
+        </div>
+        <div className="relative">
+          <h1 className="mb-5 text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
+            <span className="gradient-text">Tenang</span>
+            <span className="text-white">Access</span>
+          </h1>
+          <p className="mx-auto max-w-2xl text-lg text-slate-400 leading-relaxed">
+            Aplikasi aksesibilitas komprehensif untuk Penyandang Tunarungu
+            &amp; Tunawicara. Belajar bahasa isyarat, gunakan alat bantu
+            komunikasi, dan terhubung dengan komunitas.
+          </p>
+        </div>
       </section>
 
-      {/* Main Modules */}
-      <section className="mb-16">
-        <h2 className="mb-6 text-2xl font-bold">Modul Utama</h2>
+      <section className="mb-20">
+        <h2 className="mb-8 text-2xl font-bold text-white">Modul Utama</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {modules.map((mod) => (
             <Link
               key={mod.href}
               href={mod.href}
-              className="group rounded-2xl border bg-card p-6 transition-all hover:shadow-lg hover:border-primary/50"
+              className="group card-premium p-6"
             >
-              <div className={`mb-4 inline-flex rounded-xl p-3 ${mod.color}`}>
+              <div
+                className={`mb-4 inline-flex rounded-xl bg-gradient-to-br p-3 ${mod.color}`}
+              >
                 {mod.icon}
               </div>
-              <h3 className="mb-2 text-xl font-semibold group-hover:text-primary">
+              <h3 className="mb-2 text-xl font-semibold text-white group-hover:text-blue-400 transition-colors">
                 {mod.title}
               </h3>
-              <p className="mb-4 text-sm text-muted-foreground">{mod.description}</p>
+              <p className="mb-4 text-sm text-slate-400">{mod.description}</p>
               <ul className="space-y-2">
                 {mod.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm">
-                    <ArrowRight className="h-3 w-3 text-primary" />
+                  <li
+                    key={f}
+                    className="flex items-center gap-2 text-sm text-slate-300"
+                  >
+                    <ArrowRight className="h-3 w-3 text-pink-400" />
                     {f}
                   </li>
                 ))}
@@ -109,43 +124,63 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quick Access */}
-      <section className="mb-16">
-        <h2 className="mb-6 text-2xl font-bold">Akses Cepat</h2>
+      <section className="mb-20">
+        <h2 className="mb-8 text-2xl font-bold text-white">Akses Cepat</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {quickAccess.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="group flex items-center gap-4 rounded-xl border bg-card p-4 transition-all hover:shadow-md hover:border-primary/50"
+              className="group card-premium flex items-center gap-4 p-4"
             >
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/20 to-pink-500/20 text-blue-400 group-hover:from-blue-500/30 group-hover:to-pink-500/30 transition-all">
                 {item.icon}
               </div>
               <div>
-                <h3 className="font-semibold group-hover:text-primary">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">{item.description}</p>
+                <h3 className="font-semibold text-white group-hover:text-blue-400 transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-slate-400">{item.description}</p>
               </div>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="rounded-2xl bg-primary/5 p-8 text-center">
-        <MessageSquare className="mx-auto mb-4 h-12 w-12 text-primary" />
-        <h2 className="mb-2 text-2xl font-bold">Bergabung dengan Komunitas</h2>
-        <p className="mb-6 text-muted-foreground">
-          Terhubung dengan sesama pengguna, berbagi pengalaman, dan belajar bersama.
-        </p>
-        <Link
-          href="/komunitas/forum"
-          className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-        >
-          Mulai Diskusi
-          <ArrowRight className="h-4 w-4" />
-        </Link>
+      <section className="card-premium relative overflow-hidden p-8 text-center">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-blue-600/5 via-purple-600/5 to-pink-600/5" />
+        <div className="relative">
+          <MessageSquare className="mx-auto mb-4 h-12 w-12 text-pink-400" />
+          <h2 className="mb-2 text-2xl font-bold text-white">
+            Bergabung dengan Komunitas
+          </h2>
+          <p className="mb-6 text-slate-400">
+            Terhubung dengan sesama pengguna, berbagi pengalaman, dan belajar
+            bersama.
+          </p>
+          <Link
+            href="/komunitas/forum"
+            className="btn-primary-glow inline-flex items-center gap-2 rounded-xl px-6 py-3 font-medium"
+          >
+            Mulai Diskusi
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
       </section>
     </div>
   );
+}
+
+export default function Home() {
+  const { hasOnboarded, mounted } = useAppContext();
+
+  if (!mounted) {
+    return <OnboardingFlow />;
+  }
+
+  if (!hasOnboarded) {
+    return <OnboardingFlow />;
+  }
+
+  return <HomeContent />;
 }

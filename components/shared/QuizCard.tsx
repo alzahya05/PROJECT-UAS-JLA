@@ -37,26 +37,26 @@ export default function QuizCard({
   return (
     <div className="mx-auto w-full max-w-2xl">
       {/* Progress */}
-      <div className="mb-6 flex items-center justify-between text-sm text-muted-foreground">
+      <div className="mb-6 flex items-center justify-between text-sm text-slate-400">
         <span>
           Soal {questionNumber} dari {totalQuestions}
         </span>
         <div className="flex items-center gap-1">
-          <Trophy className="h-4 w-4" />
+          <Trophy className="h-4 w-4 text-blue-400" />
           <span>{Math.round((questionNumber / totalQuestions) * 100)}%</span>
         </div>
       </div>
 
       {/* Progress Bar */}
-      <div className="mb-8 h-2 w-full overflow-hidden rounded-full bg-muted">
+      <div className="mb-8 h-2 w-full overflow-hidden rounded-full bg-white/[0.06]">
         <div
-          className="h-full bg-primary transition-all duration-300"
+          className="h-full rounded-full bg-gradient-to-r from-blue-500 to-pink-500 transition-all duration-300"
           style={{ width: `${(questionNumber / totalQuestions) * 100}%` }}
         />
       </div>
 
       {/* Question */}
-      <h2 className="mb-6 text-xl font-semibold">{question.question}</h2>
+      <h2 className="mb-6 text-xl font-semibold text-white">{question.question}</h2>
 
       {/* Options */}
       <div className="space-y-3">
@@ -66,22 +66,30 @@ export default function QuizCard({
             onClick={() => handleSelect(index)}
             disabled={isAnswered}
             className={cn(
-              "flex w-full items-center gap-3 rounded-xl border-2 p-4 text-left transition-all",
+              "flex w-full items-center gap-3 rounded-xl border p-4 text-left transition-all duration-200",
               !isAnswered && selectedAnswer === index
-                ? "border-primary bg-primary/5"
-                : "border-border hover:border-primary/50 hover:bg-muted/50",
+                ? "border-blue-500/40 bg-blue-500/10"
+                : "border-white/[0.08] bg-white/[0.02] hover:border-white/[0.15] hover:bg-white/[0.04]",
               isAnswered && index === question.correctAnswer
-                ? "border-green-500 bg-green-50 dark:bg-green-950/30"
+                ? "border-emerald-500/40 bg-emerald-500/10"
                 : "",
               isAnswered && selectedAnswer === index && !isCorrect
-                ? "border-red-500 bg-red-50 dark:bg-red-950/30"
+                ? "border-red-500/40 bg-red-500/10"
                 : ""
             )}
           >
             <span
               className={cn(
-                "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border text-sm font-medium",
-                selectedAnswer === index ? "border-primary bg-primary text-primary-foreground" : "border-border"
+                "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border text-sm font-medium transition-all",
+                selectedAnswer === index
+                  ? "border-blue-500 bg-blue-500/20 text-blue-400"
+                  : "border-white/[0.12] text-slate-400",
+                isAnswered && index === question.correctAnswer
+                  ? "!border-emerald-500 !bg-emerald-500/20 !text-emerald-400"
+                  : "",
+                isAnswered && selectedAnswer === index && !isCorrect
+                  ? "!border-red-500 !bg-red-500/20 !text-red-400"
+                  : ""
               )}
             >
               {isAnswered && index === question.correctAnswer ? (
@@ -92,15 +100,15 @@ export default function QuizCard({
                 String.fromCharCode(65 + index)
               )}
             </span>
-            <span className="flex-1">{option}</span>
+            <span className="flex-1 text-slate-300">{option}</span>
           </button>
         ))}
       </div>
 
       {/* Explanation */}
       {isAnswered && question.explanation && (
-        <div className="mt-6 rounded-xl border border-primary/20 bg-primary/5 p-4">
-          <p className="text-sm text-muted-foreground">{question.explanation}</p>
+        <div className="mt-6 rounded-xl border border-blue-500/20 bg-blue-500/5 p-4">
+          <p className="text-sm text-slate-400">{question.explanation}</p>
         </div>
       )}
 
@@ -110,7 +118,7 @@ export default function QuizCard({
           <button
             onClick={handleSubmit}
             disabled={selectedAnswer === null}
-            className="flex items-center gap-2 rounded-xl bg-primary px-6 py-3 font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50"
+            className="btn-primary-glow flex items-center gap-2 rounded-xl px-6 py-3 font-medium disabled:opacity-50"
           >
             Submit Jawaban
           </button>
@@ -120,7 +128,7 @@ export default function QuizCard({
               setSelectedAnswer(null);
               setIsAnswered(false);
             }}
-            className="flex items-center gap-2 rounded-xl bg-primary px-6 py-3 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="btn-primary-glow flex items-center gap-2 rounded-xl px-6 py-3 font-medium"
           >
             Soal Berikutnya
             <ArrowRight className="h-4 w-4" />

@@ -37,16 +37,16 @@ const articles = [
 ];
 
 const categoryColors: Record<string, string> = {
-  Pemula: "bg-blue-500/10 text-blue-600",
-  Tips: "bg-green-500/10 text-green-600",
-  Budaya: "bg-purple-500/10 text-purple-600",
-  Teknologi: "bg-orange-500/10 text-orange-600",
+  Pemula: "from-blue-500/15 to-indigo-500/15 text-blue-400",
+  Tips: "from-emerald-500/15 to-cyan-500/15 text-emerald-400",
+  Budaya: "from-purple-500/15 to-pink-500/15 text-purple-400",
+  Teknologi: "from-orange-500/15 to-amber-500/15 text-orange-400",
 };
 
 export default function ArtikelPage() {
   return (
     <div className="space-y-6">
-      <p className="text-muted-foreground">
+      <p className="text-slate-400">
         Artikel edukasi, tips komunikasi, dan literatur seputar tunarungu & tunawicara.
       </p>
 
@@ -55,24 +55,24 @@ export default function ArtikelPage() {
           <Link
             key={article.id}
             href={`/komunitas/artikel/${article.id}`}
-            className="group rounded-xl border bg-card p-6 transition-all hover:shadow-md hover:border-primary/50"
+            className="group card-premium p-6"
           >
             <div className="mb-3 flex items-center gap-2">
               <span
-                className={`inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium ${categoryColors[article.category] || ""}`}
+                className={`inline-flex items-center gap-1 rounded-full bg-gradient-to-r px-2.5 py-1 text-xs font-medium ${categoryColors[article.category] || ""}`}
               >
                 <Tag className="h-3 w-3" />
                 {article.category}
               </span>
-              <span className="flex items-center gap-1 text-xs text-muted-foreground">
+              <span className="flex items-center gap-1 text-xs text-slate-500">
                 <Clock className="h-3 w-3" />
                 {article.readTime}
               </span>
             </div>
-            <h3 className="mb-2 text-lg font-semibold group-hover:text-primary">
+            <h3 className="mb-2 text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">
               {article.title}
             </h3>
-            <p className="text-sm text-muted-foreground">{article.excerpt}</p>
+            <p className="text-sm text-slate-400">{article.excerpt}</p>
           </Link>
         ))}
       </div>

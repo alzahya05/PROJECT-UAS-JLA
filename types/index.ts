@@ -1,8 +1,10 @@
+export type SignLanguage = "SIBINDO" | "SIBI" | "ASL";
+export type Role = "tuli" | "dengar";
+
 export interface NavItem {
   label: string;
   href: string;
   icon: string;
-  children?: NavItem[];
 }
 
 export interface QuizQuestion {
