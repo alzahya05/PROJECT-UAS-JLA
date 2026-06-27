@@ -21,14 +21,14 @@ interface SettingItemProps {
 
 function SettingItem({ icon, label, description, checked, onChange }: SettingItemProps) {
   return (
-    <div className="flex items-center justify-between rounded-xl border bg-card p-4">
+    <div className="card-premium flex items-center justify-between p-4">
       <div className="flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/20 to-pink-500/20 text-blue-400">
           {icon}
         </div>
         <div>
-          <h3 className="font-medium">{label}</h3>
-          <p className="text-sm text-muted-foreground">{description}</p>
+          <h3 className="font-medium text-white">{label}</h3>
+          <p className="text-sm text-slate-400">{description}</p>
         </div>
       </div>
       <button
@@ -36,11 +36,11 @@ function SettingItem({ icon, label, description, checked, onChange }: SettingIte
         aria-checked={checked}
         onClick={() => onChange(!checked)}
         className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-          checked ? "bg-primary" : "bg-muted"
+          checked ? "bg-gradient-to-r from-blue-500 to-pink-500" : "bg-white/[0.1]"
         }`}
       >
         <span
-          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+          className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform shadow ${
             checked ? "translate-x-6" : "translate-x-1"
           }`}
         />
@@ -59,7 +59,7 @@ export default function NotifikasiPage() {
 
   return (
     <div className="space-y-6">
-      <p className="text-muted-foreground">
+      <p className="text-slate-400">
         Konfigurasi preferensi notifikasi Anda.
       </p>
 

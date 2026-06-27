@@ -39,10 +39,10 @@ export default function ForumPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <p className="text-muted-foreground">
+        <p className="text-slate-400">
           Ruang diskusi dan berbagi pengalaman antar pengguna.
         </p>
-        <button className="rounded-xl bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+        <button className="btn-primary-glow rounded-xl px-4 py-2 text-sm font-medium">
           Buat Thread Baru
         </button>
       </div>
@@ -51,14 +51,14 @@ export default function ForumPage() {
         {threads.map((thread) => (
           <div
             key={thread.id}
-            className="group flex items-start gap-4 rounded-xl border bg-card p-4 transition-all hover:shadow-sm hover:border-primary/50"
+            className="group card-premium flex items-start gap-4 p-4"
           >
-            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500/20 to-pink-500/20 text-blue-400">
               <MessageSquare className="h-5 w-5" />
             </div>
             <div className="flex-1">
-              <h3 className="font-semibold group-hover:text-primary">{thread.title}</h3>
-              <div className="mt-1 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+              <h3 className="font-semibold text-white group-hover:text-blue-400 transition-colors">{thread.title}</h3>
+              <div className="mt-1 flex flex-wrap items-center gap-3 text-sm text-slate-400">
                 <span className="flex items-center gap-1">
                   <Users className="h-3 w-3" />
                   {thread.author}
@@ -68,7 +68,7 @@ export default function ForumPage() {
                   <Clock className="h-3 w-3" />
                   {thread.lastActivity}
                 </span>
-                <span className="rounded-full bg-muted px-2 py-0.5 text-xs">
+                <span className="rounded-full bg-white/[0.05] px-2 py-0.5 text-xs text-slate-400">
                   {thread.category}
                 </span>
               </div>

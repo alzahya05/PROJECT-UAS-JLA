@@ -8,7 +8,7 @@ export default function ScannerPage() {
 
   return (
     <div className="space-y-6">
-      <p className="text-muted-foreground">
+      <p className="text-slate-400">
         Arahkan kamera ke isyarat tangan untuk menerjemahkan secara visual.
       </p>
 
@@ -16,24 +16,24 @@ export default function ScannerPage() {
         <CameraFeed onCapture={setCapturedImage} />
 
         <div className="space-y-4">
-          <h3 className="font-semibold">Hasil Pindai</h3>
+          <h3 className="font-semibold text-white">Hasil Pindai</h3>
           {capturedImage ? (
             <div className="space-y-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={capturedImage}
                 alt="Hasil pindai"
-                className="w-full rounded-xl border"
+                className="w-full rounded-xl border border-white/[0.08]"
               />
-              <div className="rounded-xl border bg-card p-4">
-                <p className="text-sm text-muted-foreground">
+              <div className="card-premium p-4">
+                <p className="text-sm text-slate-400">
                   Analisis isyarat akan ditampilkan di sini setika integrasi model ML.
                 </p>
               </div>
             </div>
           ) : (
-            <div className="flex h-48 items-center justify-center rounded-xl border border-dashed">
-              <p className="text-sm text-muted-foreground">
+            <div className="flex h-48 items-center justify-center rounded-xl border border-dashed border-white/[0.08]">
+              <p className="text-sm text-slate-500">
                 Belum ada gambar yang dipindai
               </p>
             </div>

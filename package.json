@@ -9,7 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-<<<<<<< HEAD
+    "@hookform/resolvers": "^5.4.0",
     "@radix-ui/react-checkbox": "^1.3.5",
     "@radix-ui/react-dialog": "^1.1.17",
     "@radix-ui/react-dropdown-menu": "^2.1.18",
@@ -18,24 +18,18 @@
     "@radix-ui/react-switch": "^1.3.1",
     "@radix-ui/react-tabs": "^1.1.15",
     "@radix-ui/react-toast": "^1.2.17",
+    "@tabler/icons-react": "^3.44.0",
+    "@tanstack/react-query": "^5.101.0",
+    "axios": "^1.18.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.41.0",
     "lucide-react": "^1.21.0",
     "next": "16.2.9",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "tailwind-merge": "^3.6.0"
-=======
-    "@hookform/resolvers": "^5.4.0",
-    "@tabler/icons-react": "^3.44.0",
-    "@tanstack/react-query": "^5.101.0",
-    "axios": "^1.18.0",
-    "next": "16.2.9",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
     "react-hook-form": "^7.79.0",
+    "tailwind-merge": "^3.6.0",
     "zod": "^4.4.3"
->>>>>>> b2427929c8df30436403f75ec2dc24cb3e60b5f4
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

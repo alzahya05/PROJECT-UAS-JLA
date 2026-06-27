@@ -73,9 +73,9 @@ export default function LatihanPage() {
             }}
           />
         ) : (
-          <div className="rounded-xl border bg-card p-8 text-center">
-            <h2 className="mb-4 text-2xl font-bold">Selesai! 🎉</h2>
-            <p className="text-lg text-muted-foreground">
+          <div className="card-premium p-8 text-center">
+            <h2 className="mb-4 text-2xl font-bold text-white">Selesai! 🎉</h2>
+            <p className="text-lg text-slate-400">
               Skor Anda: {score} dari {sampleQuestions.length}
             </p>
             <button
@@ -83,7 +83,7 @@ export default function LatihanPage() {
                 setCurrentQuestion(0);
                 setScore(0);
               }}
-              className="mt-6 rounded-xl bg-primary px-6 py-3 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+              className="btn-primary-glow mt-6 rounded-xl px-6 py-3 font-medium"
             >
               Ulangi Latihan
             </button>

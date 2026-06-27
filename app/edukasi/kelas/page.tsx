@@ -7,35 +7,35 @@ const classes = [
     description: "Pelajari isyarat huruf A-Z dalam Bahasa Isyarat Indonesia",
     href: "/edukasi/kelas/huruf",
     icon: <BookOpen className="h-8 w-8" />,
-    color: "bg-blue-500/10 text-blue-600",
+    color: "from-blue-500/20 to-indigo-500/20 text-blue-400",
   },
   {
     title: "Angka",
     description: "Kuasai isyarat angka 0-9 dan cara menghitung",
     href: "/edukasi/kelas/angka",
     icon: <Calculator className="h-8 w-8" />,
-    color: "bg-green-500/10 text-green-600",
+    color: "from-emerald-500/20 to-cyan-500/20 text-emerald-400",
   },
   {
     title: "Kata Dasar",
     description: "Pelajari isyarat kata-kata dasar sehari-hari",
     href: "/edukasi/kelas/kata-dasar",
     icon: <PenTool className="h-8 w-8" />,
-    color: "bg-purple-500/10 text-purple-600",
+    color: "from-purple-500/20 to-pink-500/20 text-purple-400",
   },
   {
     title: "Kalimat",
     description: "Belajar menyusun kalimat dalam bahasa isyarat",
     href: "/edukasi/kelas/kalimat",
     icon: <Hash className="h-8 w-8" />,
-    color: "bg-orange-500/10 text-orange-600",
+    color: "from-orange-500/20 to-amber-500/20 text-orange-400",
   },
 ];
 
 export default function KelasPage() {
   return (
     <div className="space-y-6">
-      <p className="text-muted-foreground">
+      <p className="text-slate-400">
         Pilih modul belajar yang ingin Anda pelajari
       </p>
 
@@ -44,15 +44,15 @@ export default function KelasPage() {
           <Link
             key={cls.href}
             href={cls.href}
-            className="group rounded-xl border bg-card p-6 transition-all hover:shadow-md hover:border-primary/50"
+            className="group card-premium p-6"
           >
-            <div className={`mb-4 inline-flex rounded-lg p-3 ${cls.color}`}>
+            <div className={`mb-4 inline-flex rounded-xl bg-gradient-to-br p-3 ${cls.color}`}>
               {cls.icon}
             </div>
-            <h3 className="mb-2 text-lg font-semibold group-hover:text-primary">
+            <h3 className="mb-2 text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">
               {cls.title}
             </h3>
-            <p className="text-sm text-muted-foreground">{cls.description}</p>
+            <p className="text-sm text-slate-400">{cls.description}</p>
           </Link>
         ))}
       </div>

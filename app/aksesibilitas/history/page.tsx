@@ -34,27 +34,27 @@ export default function HistoryPage() {
 
   return (
     <div className="space-y-6">
-      <p className="text-muted-foreground">Riwayat penggunaan alat bantu Anda.</p>
+      <p className="text-slate-400">Riwayat penggunaan alat bantu Anda.</p>
 
       {history.length === 0 ? (
-        <div className="flex h-48 items-center justify-center rounded-xl border border-dashed">
-          <p className="text-sm text-muted-foreground">Belum ada riwayat</p>
+        <div className="flex h-48 items-center justify-center rounded-xl border border-dashed border-white/[0.08]">
+          <p className="text-sm text-slate-500">Belum ada riwayat</p>
         </div>
       ) : (
         <div className="space-y-3">
           {history.map((entry) => (
             <div
               key={entry.id}
-              className="flex items-center gap-4 rounded-xl border bg-card p-4 transition-all hover:shadow-sm"
+              className="card-premium flex items-center gap-4 p-4"
             >
-              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500/20 to-pink-500/20 text-blue-400">
                 {iconMap[entry.tool] || <Clock className="h-4 w-4" />}
               </div>
               <div className="flex-1">
-                <h3 className="font-medium">{entry.tool}</h3>
-                <p className="text-sm text-muted-foreground">{entry.summary}</p>
+                <h3 className="font-medium text-white">{entry.tool}</h3>
+                <p className="text-sm text-slate-400">{entry.summary}</p>
               </div>
-              <time className="text-xs text-muted-foreground">
+              <time className="text-xs text-slate-500">
                 {new Date(entry.timestamp).toLocaleDateString("id-ID", {
                   day: "numeric",
                   month: "short",

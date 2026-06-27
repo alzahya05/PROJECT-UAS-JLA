@@ -33,8 +33,8 @@ export default function FAB() {
                 href={action.href}
                 onClick={() => setIsOpen(false)}
                 className={cn(
-                  "flex items-center gap-3 rounded-full bg-background px-4 py-3 text-sm font-medium shadow-lg transition-all",
-                  "border border-border hover:bg-muted"
+                  "glass flex items-center gap-3 rounded-full px-4 py-3 text-sm font-medium shadow-lg transition-all duration-200",
+                  "hover:bg-white/[0.08] hover:border-white/[0.12]"
                 )}
               >
                 {iconMap[action.icon]}
@@ -48,10 +48,10 @@ export default function FAB() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-all",
+          "flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-all duration-300",
           isOpen
-            ? "bg-muted text-foreground"
-            : "bg-primary text-primary-foreground hover:bg-primary/90"
+            ? "glass text-white hover:bg-white/[0.08]"
+            : "btn-primary-glow text-white glow-blue-hover"
         )}
         aria-label={isOpen ? "Tutup quick actions" : "Buka quick actions"}
         aria-expanded={isOpen}
